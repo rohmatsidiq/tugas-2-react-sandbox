@@ -1,0 +1,622 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tugas 2</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div id="root"></div>
+
+    <script src="https://unpkg.com/react@16.12.0/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@16.12.0/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone@7.8.3/babel.js"></script>
+    <script type="text/babel">
+      function Contact({ handleChange, data, errorMessage }) {
+        if (errorMessage.errorName != "") {
+          document.getElementById("name").focus();
+        } else if (errorMessage.errorEmail != "") {
+          document.getElementById("email").focus();
+        } else if (errorMessage.errorPhoneNumber != "") {
+          document.getElementById("phoneNumber").focus();
+        } else if (errorMessage.errorCompany != "") {
+          document.getElementById("company").focus();
+        }
+
+        return (
+          <>
+            <h3>Contact details</h3>
+            <p className="deskripsi">
+              Lorem ipsum dolor sit amet consectetur adipisicing.
+            </p>
+
+            <div className="container-group">
+              <div className="form-group">
+                <label
+                  htmlFor="name"
+                  className={
+                    errorMessage.errorName ? "label-aktif" : "font-color"
+                  }
+                >
+                  Name
+                </label>
+                <input
+                  id="name"
+                  name="name"
+                  type="text"
+                  placeholder="Name"
+                  onChange={handleChange}
+                  value={data.name}
+                />
+                <span className="icon">
+                  <img src="assets/img/profile.png" width="20.29" alt="" />
+                </span>
+                {errorMessage.errorName && (
+                  <p className="error-message">{errorMessage.errorName}</p>
+                )}
+              </div>
+              <div className="form-group">
+                <label
+                  htmlFor="email"
+                  className={
+                    errorMessage.errorEmail ? "label-aktif" : "font-color"
+                  }
+                >
+                  Email
+                </label>
+                <input
+                  id="email"
+                  name="email"
+                  type="email"
+                  placeholder="Email"
+                  onChange={handleChange}
+                  value={data.email}
+                />
+                <span className="icon">
+                  <img src="assets/img/email.png" height="18" alt="" />
+                </span>
+                {errorMessage.errorEmail && (
+                  <p className="error-message">{errorMessage.errorEmail}</p>
+                )}
+              </div>
+            </div>
+            <div className="container-group">
+              <div className="form-group">
+                <label
+                  htmlFor="phoneNumber"
+                  className={
+                    errorMessage.errorPhoneNumber ? "label-aktif" : "font-color"
+                  }
+                >
+                  Phone Number
+                </label>
+                <input
+                  id="phoneNumber"
+                  name="phoneNumber"
+                  type="number"
+                  placeholder="Phone Number"
+                  onChange={handleChange}
+                  value={data.phoneNumber}
+                />
+                <span className="icon">
+                  <img src="assets/img/phone.png" height="22" alt="" />
+                </span>
+                {errorMessage.errorPhoneNumber && (
+                  <p className="error-message">
+                    {errorMessage.errorPhoneNumber}
+                  </p>
+                )}
+              </div>
+              <div className="form-group">
+                <label
+                  htmlFor="company"
+                  className={
+                    errorMessage.errorCompany ? "label-aktif" : "font-color"
+                  }
+                >
+                  Company
+                </label>
+                <input
+                  id="company"
+                  name="company"
+                  type="text"
+                  placeholder="Company"
+                  onChange={handleChange}
+                  value={data.company}
+                />
+                <span className="icon">
+                  <img src="assets/img/company.png" height="22" alt="" />
+                </span>
+                {errorMessage.errorCompany && (
+                  <p className="error-message">{errorMessage.errorCompany}</p>
+                )}
+              </div>
+            </div>
+          </>
+        );
+      }
+
+      function Service({ handleChange, data }) {
+        return (
+          <>
+            <h3>Our services</h3>
+            <p className="deskripsi">
+              Please select which service you are interested in.
+            </p>
+
+            <form>
+              <div className="container-group">
+                <div className="form-group">
+                  {data.service == "development" ? (
+                    <input
+                      onClick={handleChange}
+                      className="hidden"
+                      name="service"
+                      type="radio"
+                      id="development"
+                      value="development"
+                      defaultChecked
+                    />
+                  ) : (
+                    <input
+                      onClick={handleChange}
+                      className="hidden"
+                      name="service"
+                      type="radio"
+                      id="development"
+                      value="development"
+                    />
+                  )}
+                  <label className="btn-input-service" htmlFor="development">
+                    <div className="container-icon">
+                      <img src="assets/img/development.png" />
+                    </div>
+                    <span>Development</span>
+                  </label>
+                </div>
+                <div className="form-group">
+                  {data.service == "web-design" ? (
+                    <input
+                      onClick={handleChange}
+                      className="hidden"
+                      name="service"
+                      type="radio"
+                      id="web-design"
+                      value="web-design"
+                      defaultChecked
+                    />
+                  ) : (
+                    <input
+                      onClick={handleChange}
+                      className="hidden"
+                      name="service"
+                      type="radio"
+                      id="web-design"
+                      value="web-design"
+                    />
+                  )}
+                  <label className="btn-input-service" htmlFor="web-design">
+                    <div className="container-icon">
+                      <img src="assets/img/web-design.png" />
+                    </div>
+                    <span>Web Design</span>
+                  </label>
+                </div>
+              </div>
+              <div className="container-group">
+                <div className="form-group">
+                  {data.service == "marketing" ? (
+                    <input
+                      onClick={handleChange}
+                      className="hidden"
+                      name="service"
+                      type="radio"
+                      id="marketing"
+                      value="marketing"
+                      defaultChecked
+                    />
+                  ) : (
+                    <input
+                      onClick={handleChange}
+                      className="hidden"
+                      name="service"
+                      type="radio"
+                      id="marketing"
+                      value="marketing"
+                    />
+                  )}
+                  <label className="btn-input-service" htmlFor="marketing">
+                    <div className="container-icon">
+                      <img src="assets/img/marketing.png" />
+                    </div>
+                    <span>Marketing</span>
+                  </label>
+                </div>
+                <div className="form-group">
+                  {data.service == "other" ? (
+                    <input
+                      onClick={handleChange}
+                      className="hidden"
+                      name="service"
+                      type="radio"
+                      id="other"
+                      value="other"
+                      defaultChecked
+                    />
+                  ) : (
+                    <input
+                      onClick={handleChange}
+                      className="hidden"
+                      name="service"
+                      type="radio"
+                      id="other"
+                      value="other"
+                    />
+                  )}
+                  <label className="btn-input-service" htmlFor="other">
+                    <div className="container-icon">
+                      <img src="assets/img/other.png" />
+                    </div>
+                    <span>Other</span>
+                  </label>
+                </div>
+              </div>
+            </form>
+          </>
+        );
+      }
+
+      function Budget({ handleChange, data }) {
+        return (
+          <>
+            <h3>What's your project budget?</h3>
+            <p className="deskripsi">
+              Please select the project budget range you have in mind.
+            </p>
+            <form>
+              <div className="container-group">
+                <div className="form-group-budget">
+                  {data.budget == "5000 - 10000" ? (
+                    <input
+                      name="budget"
+                      type="radio"
+                      id="5000 - 10000"
+                      value="5000 - 10000"
+                      onClick={handleChange}
+                      defaultChecked
+                    />
+                  ) : (
+                    <input
+                      name="budget"
+                      type="radio"
+                      id="5000 - 10000"
+                      value="5000 - 10000"
+                      onClick={handleChange}
+                    />
+                  )}
+                  <label className="btn-input-service" htmlFor="5000 - 10000">
+                    $5.000 - $10.000
+                  </label>
+                </div>
+                <div className="form-group-budget">
+                  {data.budget == "10000 - 20000" ? (
+                    <input
+                      name="budget"
+                      type="radio"
+                      id="10000 - 20000"
+                      value="10000 - 20000"
+                      onClick={handleChange}
+                      defaultChecked
+                    />
+                  ) : (
+                    <input
+                      name="budget"
+                      type="radio"
+                      id="10000 - 20000"
+                      value="10000 - 20000"
+                      onClick={handleChange}
+                    />
+                  )}
+                  <label className="btn-input-service" htmlFor="10000 - 20000">
+                    $10.000 - $20.000
+                  </label>
+                </div>
+              </div>
+              <div className="container-group">
+                <div className="form-group-budget">
+                  {data.budget == "20000 - 50000" ? (
+                    <input
+                      name="budget"
+                      type="radio"
+                      id="20000 - 50000"
+                      value="20000 - 50000"
+                      onClick={handleChange}
+                      defaultChecked
+                    />
+                  ) : (
+                    <input
+                      name="budget"
+                      type="radio"
+                      id="20000 - 50000"
+                      value="20000 - 50000"
+                      onClick={handleChange}
+                    />
+                  )}
+                  <label className="btn-input-service" htmlFor="20000 - 50000">
+                    $20.000 - $50.000
+                  </label>
+                </div>
+                <div className="form-group-budget">
+                  {data.budget == "50000 +" ? (
+                    <input
+                      name="budget"
+                      type="radio"
+                      id="50000 +"
+                      value="50000 +"
+                      onClick={handleChange}
+                      defaultChecked
+                    />
+                  ) : (
+                    <input
+                      name="budget"
+                      type="radio"
+                      id="50000 +"
+                      value="50000 +"
+                      onClick={handleChange}
+                    />
+                  )}
+                  <label className="btn-input-service" htmlFor="50000 +">
+                    $50.000 +
+                  </label>
+                </div>
+              </div>
+            </form>
+          </>
+        );
+      }
+
+      function Submit({ handleSubmit }) {
+        return (
+          <div className="container-success">
+            <div className="img-container">
+              <img src="assets/img/success.png" width="157" alt="" />
+            </div>
+            <div>
+              <h3>Submit your quote request</h3>
+              <p className="deskripsi">
+                Please review all the information you previously typed in the
+                past steps, and if all is okay, submit your message to receive a
+                project quote in 24 - 48 hours.
+              </p>
+            </div>
+            <div className="container-btn-submit">
+              <button onClick={handleSubmit} className="next-btn">
+                Submit
+              </button>
+            </div>
+          </div>
+        );
+      }
+
+      function App() {
+        const [page, setPage] = React.useState(1);
+        const [data, setData] = React.useState({
+          name: "",
+          email: "",
+          phoneNumber: "",
+          company: "",
+          service: "development",
+          budget: "50000 +",
+        });
+
+        const [errorMessage, setErrorMessage] = React.useState({
+          errorName: "",
+          errorEmail: "",
+          errorPhoneNumber: "",
+          errorCompany: "",
+        });
+
+        const handleNextPage = () => {
+          if (page == 1) {
+            const email = data.email;
+            const arrEmail = email.split("@");
+            const phoneNumber = data.phoneNumber;
+            const arrPhoneNumber = phoneNumber.split("");
+            const validatePhoneNumber = arrPhoneNumber[0] + arrPhoneNumber[1];
+            const lengthPhoneNumber = arrPhoneNumber.length;
+
+            if (data.name == "") {
+              setErrorMessage({
+                ...errorMessage,
+                errorName: "Name is required",
+              });
+            } else if (data.email == "") {
+              setErrorMessage({
+                ...errorMessage,
+                errorEmail: "Email is required",
+              });
+            } else if (arrEmail[1] !== "gmail.com") {
+              setErrorMessage({
+                ...errorMessage,
+                errorEmail: "Email is invalid",
+              });
+            } else if (data.phoneNumber == "") {
+              setErrorMessage({
+                ...errorMessage,
+                errorPhoneNumber: "Phone number is required",
+              });
+            } else if (
+              validatePhoneNumber != "08" ||
+              lengthPhoneNumber < 12 ||
+              lengthPhoneNumber > 14
+            ) {
+              setErrorMessage({
+                ...errorMessage,
+                errorPhoneNumber: "Phone number is invalid",
+              });
+            } else if (data.company == "") {
+              setErrorMessage({
+                ...errorMessage,
+                errorCompany: "Company is required",
+              });
+            } else {
+              setPage(page + 1);
+            }
+          } else {
+            setPage(page + 1);
+          }
+        };
+        const handlePreviousPage = () => {
+          setPage(page - 1);
+        };
+
+        const handleChange = (e) => {
+          if (e.target.name == "name") {
+            setData({ ...data, name: e.target.value });
+            setErrorMessage({ ...errorMessage, errorName: "" });
+          } else if (e.target.name == "email") {
+            setData({ ...data, email: e.target.value });
+            setErrorMessage({ ...errorMessage, errorEmail: "" });
+          } else if (e.target.name == "phoneNumber") {
+            setData({ ...data, phoneNumber: e.target.value });
+            setErrorMessage({ ...errorMessage, errorPhoneNumber: "" });
+          } else if (e.target.name == "company") {
+            setData({ ...data, company: e.target.value });
+            setErrorMessage({ ...errorMessage, errorCompany: "" });
+          } else if (e.target.name == "service") {
+            setData({ ...data, service: e.target.value });
+          } else if (e.target.name == "budget") {
+            setData({ ...data, budget: e.target.value });
+          }
+        };
+
+        const handleSubmit = () => {
+          const dataString = JSON.stringify(data);
+          alert(dataString);
+          setData({
+            name: "",
+            email: "",
+            phoneNumber: "",
+            company: "",
+            service: "development",
+            budget: "50000 +",
+          });
+          setPage(1);
+        };
+
+        return (
+          <div className="container">
+            <h1>Get a project quote</h1>
+            <p className="sub-judul">
+              Please fill the form below to receive a quote for your project.
+              Feel free to add as much detail as need.
+            </p>
+            <div className="box-form">
+              <div className="container-selector">
+                <div className="container-number selector-active">
+                  <p>1</p>
+                </div>
+                {page > 1 ? (
+                  <div className="container-pembatas">
+                    <div className="warna-selector width-full"></div>
+                  </div>
+                ) : (
+                  <div className="container-pembatas">
+                    <div className="warna-selector width-half"></div>
+                  </div>
+                )}
+                {page >= 2 ? (
+                  <div className="container-number selector-active">
+                    <p>2</p>
+                  </div>
+                ) : (
+                  <div className="container-number">
+                    <p>2</p>
+                  </div>
+                )}
+                {page == 2 && (
+                  <div className="container-pembatas">
+                    <div className="warna-selector width-half"></div>
+                  </div>
+                )}
+                {page > 2 && (
+                  <div className="container-pembatas">
+                    <div className="warna-selector width-full"></div>
+                  </div>
+                )}
+                {page < 2 && (
+                  <div className="container-pembatas">
+                    <div className="warna-selector"></div>
+                  </div>
+                )}
+
+                {page >= 3 ? (
+                  <div className="container-number selector-active">
+                    <p>3</p>
+                  </div>
+                ) : (
+                  <div className="container-number">
+                    <p>3</p>
+                  </div>
+                )}
+                {page == 3 && (
+                  <div className="container-pembatas">
+                    <div className="warna-selector width-half"></div>
+                  </div>
+                )}
+                {page > 3 && (
+                  <div className="container-pembatas">
+                    <div className="warna-selector width-full"></div>
+                  </div>
+                )}
+                {page < 3 && (
+                  <div className="container-pembatas">
+                    <div className="warna-selector"></div>
+                  </div>
+                )}
+                {page >= 4 ? (
+                  <div className="container-number selector-active">
+                    <p>4</p>
+                  </div>
+                ) : (
+                  <div className="container-number">
+                    <p>4</p>
+                  </div>
+                )}
+              </div>
+              <hr />
+              {page == 1 && (
+                <Contact
+                  handleChange={handleChange}
+                  data={data}
+                  errorMessage={errorMessage}
+                />
+              )}
+              {page == 2 && <Service handleChange={handleChange} data={data} />}
+              {page == 3 && <Budget handleChange={handleChange} data={data} />}
+              {page == 4 && <Submit handleSubmit={handleSubmit} />}
+            </div>
+
+            <div
+              className={page <= 1 ? "container-btn flex-end" : "container-btn"}
+            >
+              {page > 1 && (
+                <button onClick={handlePreviousPage} className="previous-btn">
+                  Previous step
+                </button>
+              )}
+              {page < 4 && (
+                <button onClick={handleNextPage} className="next-btn">
+                  Next step
+                </button>
+              )}
+            </div>
+          </div>
+        );
+      }
+      ReactDOM.render(<App />, document.getElementById("root"));
+    </script>
+  </body>
+</html>
